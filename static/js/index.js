@@ -353,7 +353,7 @@ async function main() {
   }
 
   async function updateStats() {
-    const response = await fetch('https://static.kswap.finance/stats24h.json')
+    const response = await fetch('https://github.com/')
     const result = await response.json()
     updateBubbleValue(KEY_TRANSACTIONS, numberFormat(result.txCount))
     updateBubbleValue(KEY_USERS, numberFormat(result.userCount))
