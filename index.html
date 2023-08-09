@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="shortcut icon" type="image/png" href="/favicon.png" />
+<link rel="apple-touch-icon" sizes="192x192" href="/images/192x192_App_Icon.png" />
+<link rel="apple-touch-icon" sizes="512x512" href="/images/512x512_App_Icon.png" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<link rel="manifest" href="/manifest.json" />
+
+<link rel="stylesheet" type="text/css" href="static/css/index.css" />
+<script src="static/js/vue@2.6.js"></script>
+<script src="static/js/vue-i18n.js"></script>
+<script src="static/js/zh-cn.js"></script>
+<script src="static/js/bubbles.js"></script>
+<script src="static/js/index.js"></script>
+<title>KSwap - BASEChain Ecological decentralized exchange</title>
+</head>
+<body>
+<noscript>You need to enable JavaScript to run this app.</noscript>
+<div id="root">
+<template>
+<div v-if="!loaded" class="loading">
+<svg viewBox="0 0 24 24" fill="none">
+<path d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 9.27455 20.9097 6.80375 19.1414 5" />
+</svg>
+</div>
+<div v-else>
+<canvas id="canvas0"></canvas>
+<div class="topbar row-between">
+<div class="left-top">
+<img class="logo" src="static/media/logo.svg" />
+</div>
+<div class="right-top row">
+<ul v-if="!isMobile" class="navi row" v-for="(group, i) in navis">
+<li :key="group.groupName" @mouseover="group.active = true" @mouseout="group.active = false">
+<span>{{$t(group.groupName)}}</span>
+<div class="menu-outer">
+<div class="menu" v-show="group.active">
+<a class="menu-item" v-for="item in group.items" :href="item.url">
+<div class="menu-item-title">{{$t(item.name)}}</div>
+<div class="menu-item-desc">{{$t(item.desc)}}</div>
+</a>
+</div>
+</div>
+</li>
+</ul>
+<div class="tools row">
+<div class="language" @mouseover="showLanguageMenu = true" @mouseout="showLanguageMenu = false" @click="showLanguageMenu = !showLanguageMenu">
+<img src="static/media/language.svg" alt="lang-icon" width="18px" height="18px" />
+<div class="language-menu-outer">
+<div class="language-menu" v-show="showLanguageMenu">
+<div class="language-menu-item" v-for="lang in languages" @click="changeLang(lang)">
+{{lang.label}}
+<span v-if="lang.key === currentLang.key" style="margin-left: 4px;">√</span>
+</div>
+</div>
+</div>
+</div>
+<div v-if="isMobile" class="mobile-menu">
+<img src="static/media/mobile-menu.svg" alt="mobile menu" @click="showMobileNavi = true" />
+</div>
+</div>
+</div>
+</div>
+<div class="main">
+<template v-if="!isMobile">
+<div class="text1">BASEChain</div>
+<div class="text2">{{$t('Feel the Beauty of Trading')}}</div>
+<div class="text4"> {{$t('KSwap is a decentralized exchange in service of BASEChain ecosystem, incentivizing each contributor through mining mechanisms.')}}</div>
+</template>
+<template v-else>
+<div class="text1">BASEChain</div>
+<div class="text2">{{$t('Feel the Beauty of Trading')}}</div>
+</template>
+<div class="quick-links">
+<button class="primary" @click="window.open('https://app.kswap.space')">{{$t('Launch APP')}}</button>
+<button class="secondary help-center" @mouseover="showHelpMenu = true" @mouseout="showHelpMenu = false">
+{{$t('Help Center')}}
+<div class="help-menu-outer" v-show="showHelpMenu">
+<div class="help-menu">
+<div class="help-menu-item" @click="window.open('kswap')"> {{$t('Docs')}}</div>
+<div class="seperator"></div>
+<div class="help-menu-item" @click="window.open('support')"> {{$t('Support')}}</div>
+</div>
+</div>
+</button>
+</div>
+</div>
+<div class="footer row-between">
+<div class="footer-left">© 2023 KSwap Space</div>
+<div class="footer-right">
+<ul class="media-icons row">
+<li><a href="https://github.com/kswap-finance"><img src="static/media/icon_github.svg" /></a></li>
+<li><a href="https://t.me/kswap_finance"><img src="static/media/icon_telegram.svg" /></a></li>
+<li><a href="https://twitter.com/kswap_finance"><img src="static/media/icon_twitter.svg" /></a></li>
+<li><a href="https://kswap-finance.medium.com/"><img src="static/media/icon_medium.svg" /></a></li>
+</ul>
+</div>
+</div>
+<div class="mobile-menu-popup" :style="{'right': showMobileNavi ? '0' : '-100%'}">
+<div class="mobile-navi-container">
+<div class="row-right" @click="showMobileNavi = false">
+<img alt="close" src="static/media/close.svg" />
+</div>
+<ul class="mobile-navi" v-for="(group, i) in navis">
+<li :key="group.groupName">
+<div class="row-between" style="margin-right: 5px;" @click="group.active = !group.active">
+<span class="mobile-navi-header">{{$t(group.groupName)}}</span>
+<img alt="arrow" src="static/media/arrow_down.svg" />
+</div>
+<div class="mobile-menu-wrapper" :style="{'display': group.active ? 'block' : 'none' }">
+<a class="mobile-menu-link" v-for="item in group.items" :href="item.url">
+<div class="menu-item-title">{{$t(item.name)}}</div>
+<div class="menu-item-desc">{{$t(item.desc)}}</div>
+</a>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</template>
+</div>
+</body>
+</html>

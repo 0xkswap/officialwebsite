@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>编组 7</title>
+    <g id="页面-2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Page-3" transform="translate(-1606.000000, -32.000000)" stroke="#23252B" stroke-width="1.33333333">
+            <g id="编组-3" transform="translate(1590.000000, 22.000000)">
+                <g id="编组-7" transform="translate(16.000000, 10.000000)">
+                    <circle id="椭圆形" cx="8" cy="8" r="7.33333333"></circle>
+                    <ellipse id="椭圆形" cx="8" cy="8" rx="2.88888889" ry="7.33333333"></ellipse>
+                    <line x1="0.888888889" y1="8" x2="15.1111111" y2="8" id="路径-6"></line>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
